@@ -10,7 +10,7 @@ public class UI_Canvas : MonoBehaviour
     public GameObject pausepanel;
     public GameObject gameoverpanel;
     public bool panelabierto = false;
-    static public int scrolls = 0;
+    static public int scrolls;
     TextMeshProUGUI textmeshpro_totalscrolls_text;
 
     void Start()

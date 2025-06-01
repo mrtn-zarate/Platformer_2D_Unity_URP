@@ -8,21 +8,67 @@ public class Player : MonoBehaviour
     private float inputH;
     [SerializeField] private float movementspeed;
     [SerializeField] private float jumpspeed;
+    public SpriteRenderer spriterenderer;
+    private Animator anim;
+    private int scrollscollected;
+    public AudioSource audiosource_jump;
+    public AudioSource audiosource_gameover;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        scrollscollected = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        inputH = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(inputH * movementspeed, rb.velocity.y) ;
+        movement();
+        attack();
+    }
+    private void attack()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            anim.SetTrigger("attack");
+        }
+    }
+    
 
-        if(Input.GetKeyDown(KeyCode.Space))
+    private void movement()
+    {
+        inputH = Input.GetAxisRaw("Horizontal");
+        rb.velocity = new Vector2(inputH * movementspeed, rb.velocity.y);
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(Vector2.up * jumpspeed, ForceMode2D.Impulse);
+        }
+        if (inputH != 0)
+        {
+            anim.SetBool("run", true);
+        }
+        else
+        {
+            anim.SetBool("run", false);
+        }
+        if ((Input.GetKey("d")) || (Input.GetKey("right")))
+        {
+            spriterenderer.flipX = false;
+        }
+        if ((Input.GetKey("a")) || (Input.GetKey("left")))
+        {
+            spriterenderer.flipX = true;
+        }
+        if (((Input.GetKey("w")) || (Input.GetKey("up")) || (Input.GetKey("space"))))
+        {
+            anim.SetBool("jump", true);
+            audiosource_jump.Play();
+        }
+        else
+        {
+            anim.SetBool("jump", false);
         }
     }
 }
