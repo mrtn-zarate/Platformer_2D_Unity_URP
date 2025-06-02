@@ -8,7 +8,8 @@ public class checkpoint : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            collision.GetComponent<playerrespawn>().reachedcheckpoint(transform.position.x, transform.position.y);        
+            collision.GetComponent<playerrespawn>().reachedcheckpoint(transform.position.x, transform.position.y);
+            Debug.Log("checpint tocado");
         }
     }
 }

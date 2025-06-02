@@ -9,12 +9,14 @@ public class UI_Canvas : MonoBehaviour
     public GameObject textmeshpro_totalscrolls;
     public GameObject pausepanel;
     public GameObject gameoverpanel;
+    public GameObject transitionPanel;
     public bool panelabierto = false;
     static public int scrolls;
     TextMeshProUGUI textmeshpro_totalscrolls_text;
 
     void Start()
     {
+        pausepanel.SetActive(false);
         Time.timeScale = 1;
         scrolls = 0;
         textmeshpro_totalscrolls_text = textmeshpro_totalscrolls.GetComponent<TextMeshProUGUI>();
@@ -41,6 +43,11 @@ public class UI_Canvas : MonoBehaviour
                 panelabierto = true;
             }
         }
+        if(scrolls>=4)
+        {
+            transitionPanel.SetActive(true);
+            Invoke("nextlevel", 1f);
+        }
     }
     public void reiniciarjuego()
     {
@@ -60,11 +67,19 @@ public class UI_Canvas : MonoBehaviour
     }
     public void mandaralmenuprincipal()
     {
+
         SceneManager.LoadScene("titlescreen");
     }
     public void cerrareljuego()
     {
         Application.Quit();
     }
-
+    void nextlevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    void gototitlescreen()
+    {
+        SceneManager.LoadScene("titlescreen");
+    }
 }
