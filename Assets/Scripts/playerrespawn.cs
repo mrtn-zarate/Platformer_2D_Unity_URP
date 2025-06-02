@@ -8,7 +8,7 @@ public class playerrespawn : MonoBehaviour
 
     void Start()
     {
-        if(PlayerPrefs.GetFloat("checkpointpositionx")!=0)
+        if(checkpoint.checkpointtouched)
         {
             transform.position=(new Vector2(PlayerPrefs.GetFloat("checkpointpositionx"), PlayerPrefs.GetFloat("checkpointpositiony")));
         }

@@ -9,11 +9,15 @@ public class Scroll : MonoBehaviour
     public AudioSource clip;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        clip.Play();
-        UI_Canvas.scrolls += 1;
-        this.GetComponent<Collider2D>().enabled = false;
-        this.GetComponent<SpriteRenderer>().enabled = false;
-        gameObject.transform.GetChild(0).gameObject.SetActive(true);
-        Destroy(gameObject, 1f);
+        if (collision.CompareTag("Player"))
+        {
+            clip.Play();
+            UI_Canvas.scrolls += 1;
+            this.GetComponent<Collider2D>().enabled = false;
+            this.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            Destroy(gameObject, 1f);
+        }
+        
     }
 }

@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
         inputH = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(inputH * movementspeed, rb.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if ((Input.GetKeyDown(KeyCode.Space) || (Input.GetKey("w")) || (Input.GetKey("up"))) && groundcheck.touchingtheground )
         {
             rb.AddForce(Vector2.up * jumpspeed, ForceMode2D.Impulse);
         }
@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
         {
             spriterenderer.flipX = true;
         }
-        if (((Input.GetKey("w")) || (Input.GetKey("up")) || (Input.GetKey("space"))))
+        if (((Input.GetKeyDown(KeyCode.W)) || (Input.GetKeyDown(KeyCode.UpArrow)) || (Input.GetKeyDown(KeyCode.Space))) && groundcheck.touchingtheground)
         {
             anim.SetBool("jump", true);
             audiosource_jump.Play();
@@ -69,6 +69,15 @@ public class Player : MonoBehaviour
         else
         {
             anim.SetBool("jump", false);
+        }
+        
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Enemy"))
+        {
+            anim.SetBool("hit", true);
+
         }
     }
 }
