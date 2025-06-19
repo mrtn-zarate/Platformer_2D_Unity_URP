@@ -45,8 +45,8 @@ public class UI_Canvas : MonoBehaviour
         }
         if(scrolls>=4)
         {
-            transitionPanel.SetActive(true);
-            Invoke("nextlevel", 1f);
+            Time.timeScale = 0;
+
         }
     }
     public void reiniciarjuego()
@@ -70,6 +70,11 @@ public class UI_Canvas : MonoBehaviour
 
         SceneManager.LoadScene("titlescreen");
     }
+    public void mandaralanextlevel()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
     public void cerrareljuego()
     {
         Application.Quit();
@@ -82,4 +87,5 @@ public class UI_Canvas : MonoBehaviour
     {
         SceneManager.LoadScene("titlescreen");
     }
+
 }

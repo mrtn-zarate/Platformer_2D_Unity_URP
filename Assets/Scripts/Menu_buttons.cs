@@ -7,9 +7,12 @@ public class Menu_buttons : MonoBehaviour
 {
     public GameObject canvas;
     public GameObject transitionPanel;
+    public GameObject instructionsPanel;
     void Start()
     {
+        Time.timeScale = 1;
         transitionPanel.SetActive(false);
+        instructionsPanel.SetActive(false);
     }
     public void mandaralmenuprincipal()
     {
@@ -19,8 +22,9 @@ public class Menu_buttons : MonoBehaviour
     }
     public void mandaracreditos()
     {
-        SceneManager.LoadScene("credits");
-        
+        transitionPanel.SetActive(true);
+        Invoke("gotocredits", 1f);
+
     }
     public void empezarjuego()
     {
@@ -31,6 +35,14 @@ public class Menu_buttons : MonoBehaviour
     {
         Application.Quit();
     }
+    public void mostrarinstructionspanel()
+    {
+        instructionsPanel.SetActive(true);
+    }
+    public void cerrarinstructionspanel()
+    {
+        instructionsPanel.SetActive(false);
+    }
     void nextlevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -39,4 +51,9 @@ public class Menu_buttons : MonoBehaviour
     {
         SceneManager.LoadScene("titlescreen");
     }
+    void gotocredits()
+    {
+        SceneManager.LoadScene("credits");
+    }
+
 }
