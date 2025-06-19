@@ -10,6 +10,7 @@ public class Menu_buttons : MonoBehaviour
     public GameObject instructionsPanel;
     void Start()
     {
+        Time.timeScale = 1;
         transitionPanel.SetActive(false);
         instructionsPanel.SetActive(false);
     }

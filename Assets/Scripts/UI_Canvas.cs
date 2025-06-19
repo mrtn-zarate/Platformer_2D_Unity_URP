@@ -72,6 +72,7 @@ public class UI_Canvas : MonoBehaviour
     }
     public void mandaralanextlevel()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void cerrareljuego()
