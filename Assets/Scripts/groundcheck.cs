@@ -8,7 +8,10 @@ public class groundcheck : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        touchingtheground = true;
+        if (collision.CompareTag("ground"))
+        {
+            touchingtheground = true;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

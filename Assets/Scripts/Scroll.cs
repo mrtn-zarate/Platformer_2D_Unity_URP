@@ -16,8 +16,13 @@ public class Scroll : MonoBehaviour
             this.GetComponent<Collider2D>().enabled = false;
             this.GetComponent<SpriteRenderer>().enabled = false;
             gameObject.transform.GetChild(0).gameObject.SetActive(true);
-            Destroy(gameObject, 1f);
+            Invoke("dissapearchindren", 1f);
         }
         
+    }
+    void dissapearchindren()
+    {
+        gameObject.transform.GetChild(0).gameObject.SetActive(false); 
+        gameObject.transform.GetChild(1).gameObject.SetActive(false);
     }
 }
